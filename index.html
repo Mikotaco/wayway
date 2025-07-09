@@ -5,7 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>☁️云深处family☁️ 菜单生成器</title>
   <style>
-    body { font-family: sans-serif; margin: 20px; }
+    body
+    .scroll-box { max-height: 150px;
+  overflow-y: auto;
+  background: #fff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  margin-bottom: 10px;}
+    { font-family: sans-serif; margin: 20px; }
     h1 { color: #4CAF50; }
     .section { margin-bottom: 20px; }
     label { display: block; margin: 8px 0 4px; }
@@ -99,8 +107,10 @@
           const label = document.createElement("label");
           label.innerHTML = `<input type='checkbox' onchange='onDishCheck(this, "${dish}")'> ${dish}`;
           label.ondblclick = () => toggleDish(dish);
-          container.appendChild(label);
-        });
+         
+             scrollBox.appendChild(label);
+    });
+  container.appendChild(label);
       }
     }
 
