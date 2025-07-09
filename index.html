@@ -6,13 +6,15 @@
   <title>☁️云深处family☁️ 菜单生成器</title>
   <style>
     body
-    .scroll-box { max-height: 150px;
-  overflow-y: auto;
-  background: #fff;
-  border: 1px solid #ccc;
-  padding: 8px;
-  border-radius: 6px;
-  margin-bottom: 10px;}
+        .scroll-box { 
+          max-height: 150px;
+          overflow-y: auto;
+          background: #fff;
+          border: 1px solid #ccc;
+          padding: 8px;
+          border-radius: 6px;
+          margin-bottom: 10px;
+                    }
     { font-family: sans-serif; margin: 20px; }
     h1 { color: #4CAF50; }
     .section { margin-bottom: 20px; }
@@ -99,20 +101,25 @@
     function renderDishList() {
       const container = document.getElementById("dishList");
       container.innerHTML = "";
+      
       for (const category in data) {
         const title = document.createElement("h4");
         title.innerText = category;
         container.appendChild(title);
-        data[category].forEach(dish => {
-          const label = document.createElement("label");
-          label.innerHTML = `<input type='checkbox' onchange='onDishCheck(this, "${dish}")'> ${dish}`;
-          label.ondblclick = () => toggleDish(dish);
-         
-             scrollBox.appendChild(label);
+       
+        const scrollBox = document.createElement("div");
+    scrollBox.className = "scroll-box";
+
+    data[category].forEach(dish => {
+      const label = document.createElement("label");
+      label.innerHTML = `<input type='checkbox' onchange='onDishCheck(this, "${dish}")'> ${dish}`;
+      label.ondblclick = () => toggleDish(dish);
+      scrollBox.appendChild(label);
     });
-  container.appendChild(label);
-      }
-    }
+
+    container.appendChild(scrollBox);
+  }
+}
 
     function onDishCheck(checkbox, dish) {
       if (checkbox.checked) {
